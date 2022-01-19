@@ -28,13 +28,13 @@ export class Horse {
   speciality: string;
 
   @Prop({ type: mongoose.Types.ObjectId, default: null, ref: 'User' })
-  owner?: mongoose.Types.ObjectId;
+  owner?: string;
 
   @Prop({ required: true })
   createdAt: Date;
 
   @Prop({ type: [{ type: mongoose.Types.ObjectId, ref: 'User' }], default: [] })
-  dpUsers?: [mongoose.Types.ObjectId];
+  dpUsers?: string[];
 }
 
 export const HorseSchema = SchemaFactory.createForClass(Horse);

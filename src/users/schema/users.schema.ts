@@ -38,7 +38,7 @@ export class User {
     type: [{ type: mongoose.Types.ObjectId, ref: 'Horse' }],
     default: [],
   })
-  horses?: [mongoose.Types.ObjectId];
+  horses?: string[];
 
   @Prop({ required: true })
   createdAt: Date;

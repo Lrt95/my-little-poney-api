@@ -1,4 +1,11 @@
-import { IsDate, IsInt, IsMongoId, IsNotEmpty, IsOptional, IsString } from "class-validator";
+import {
+  IsDate,
+  IsInt,
+  IsMongoId,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class UserEntity {
   @IsMongoId()
