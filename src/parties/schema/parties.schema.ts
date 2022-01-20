@@ -25,7 +25,7 @@ export class Party {
   theme: string;
 
   @Prop({ required: true, default: false })
-  isValid: string;
+  isValid: boolean;
 
   @Prop({ required: true })
   createdAt: Date;

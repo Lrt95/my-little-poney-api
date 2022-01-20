@@ -31,7 +31,7 @@ export class Contest {
   createdAt: Date;
 
   @Prop({ required: true, default: false })
-  isValid: string;
+  isValid: boolean;
 
   @Prop({
     type: [

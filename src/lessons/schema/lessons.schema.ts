@@ -30,7 +30,7 @@ export class Lesson {
   discipline: string;
 
   @Prop({ required: true, default: false })
-  isValid: string;
+  isValid: boolean;
 
   @Prop({ type: [{ type: mongoose.Types.ObjectId, ref: 'User' }], default: [] })
   attendees?: string[];
