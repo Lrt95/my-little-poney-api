@@ -16,22 +16,22 @@ export class User {
   @Prop({ required: true, unique: true })
   email: string;
 
-  @Prop()
+  @Prop({ default: '' })
   profilePicture?: string;
 
-  @Prop()
+  @Prop({ default: 0 })
   age?: number;
 
-  @Prop()
+  @Prop({ default: '' })
   FFELink?: string;
 
-  @Prop()
+  @Prop({ default: '' })
   phoneNumber?: string;
 
-  @Prop()
+  @Prop({ default: '' })
   role?: string;
 
-  @Prop()
+  @Prop({ default: '' })
   type?: string;
 
   @Prop({
