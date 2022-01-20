@@ -12,11 +12,25 @@ export class HorsesService {
   ) {}
 
   async findAll(): Promise<Horse[]> {
-    return await this.model.find().populate('owner dpUsers').exec();
+    return await this.model
+      .find()
+      .populate('owner dpUsers')
+      .exec()
+      .catch((error) => error);
   }
 
   async findOneById(id: string): Promise<Horse> {
-    return await this.model.findById(id).populate('owner dpUsers').exec();
+    return await this.model
+      .findById(id)
+      .exec()
+      .then((result) => {
+        if (result) {
+          return result.populate('owner dpUsers');
+        } else {
+          throw { error: 'unknown horse' };
+        }
+      })
+      .catch((error) => error);
   }
 
   async create(createHorseDto: CreateHorseDto): Promise<Horse> {
@@ -25,20 +39,35 @@ export class HorsesService {
       createdAt: new Date(),
     })
       .save()
-      .then((result) => result.populate('owner dpUsers'));
+      .then((result) => result.populate('owner dpUsers'))
+      .catch((error) => error);
   }
 
   async update(id: string, updateHorseDto: UpdateHorseDto): Promise<Horse> {
     return await this.model
       .findByIdAndUpdate(id, updateHorseDto, { new: true })
-      .populate('owner dpUsers')
-      .exec();
+      .exec()
+      .then((result) => {
+        if (result) {
+          return result.populate('owner dpUsers');
+        } else {
+          throw { error: 'unknowns horse' };
+        }
+      })
+      .catch((error) => error);
   }
 
   async delete(id: string): Promise<Horse> {
     return await this.model
       .findByIdAndDelete(id)
-      .populate('owner dpUsers')
-      .exec();
+      .exec()
+      .then((result) => {
+        if (result) {
+          return result.populate('owner dpUsers');
+        } else {
+          throw { error: 'unknown horse' };
+        }
+      })
+      .catch((error) => error);
   }
 }

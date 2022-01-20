@@ -33,12 +33,17 @@ export class UsersController {
 
   @Post('/forget')
   findByUserNameEmail(@Body() userForgetDto: UserForgetDto) {
+    if (!userForgetDto.userName || !userForgetDto.email) {
+      return { error: 'field missing' };
+    }
     return this.usersService.findOneByUserNameAndMail(userForgetDto);
   }
 
   @Post('/login')
   findByPasswordEmail(@Body() userDto: UserDto) {
-    console.log(userDto);
+    if (!userDto.password || !userDto.email) {
+      return { error: 'field missing' };
+    }
     return this.usersService.findOneByPasswordAndMail(userDto);
   }
 

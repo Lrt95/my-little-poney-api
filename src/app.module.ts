@@ -4,7 +4,9 @@ import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
 import { HorsesModule } from './horses/horses.module';
-import { LessonModule } from './lesson/lesson.module';
+import { LessonsModule } from './lessons/lessons.module';
+import { ContestsModule } from './contests/contests.module';
+import { PartiesModule } from './parties/parties.module';
 
 @Module({
   imports: [
@@ -17,7 +19,9 @@ import { LessonModule } from './lesson/lesson.module';
     ),
     UsersModule,
     HorsesModule,
-    LessonModule,
+    LessonsModule,
+    ContestsModule,
+    PartiesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
