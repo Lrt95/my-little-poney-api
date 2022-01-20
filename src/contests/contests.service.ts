@@ -14,7 +14,6 @@ export class ContestsService {
   async findAll(): Promise<Contest[]> {
     return await this.model
       .find()
-      .populate('user attendees.user')
       .exec()
       .catch((error) => error);
   }
@@ -25,7 +24,7 @@ export class ContestsService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('user attendees.user');
+          return result;
         } else {
           throw { error: 'unknown contest' };
         }
@@ -39,7 +38,7 @@ export class ContestsService {
       createdAt: new Date(),
     })
       .save()
-      .then((result) => result.populate('user attendees.user'))
+      .then((result) => result)
       .catch((error) => error);
   }
 
@@ -52,7 +51,7 @@ export class ContestsService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('user attendees.user');
+          return result;
         } else {
           throw { error: 'unknown contest' };
         }
@@ -68,7 +67,7 @@ export class ContestsService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('user attendees.user');
+          return result;
         } else {
           throw { error: 'unknown contest' };
         }

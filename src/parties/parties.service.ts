@@ -14,7 +14,6 @@ export class PartiesService {
   async findAll(): Promise<Party[]> {
     return await this.model
       .find()
-      .populate('user attendees.user')
       .exec()
       .catch((error) => error);
   }
@@ -25,7 +24,7 @@ export class PartiesService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('user attendees.user');
+          return result;
         } else {
           throw { error: 'unknown party' };
         }
@@ -39,7 +38,7 @@ export class PartiesService {
       createdAt: new Date(),
     })
       .save()
-      .then((result) => result.populate('user attendees.user'))
+      .then((result) => result)
       .catch((error) => error);
   }
 
@@ -49,7 +48,7 @@ export class PartiesService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('user attendees.user');
+          return result;
         } else {
           throw { error: 'unknown party' };
         }
@@ -65,7 +64,7 @@ export class PartiesService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('user attendees.user');
+          return result;
         } else {
           throw { error: 'unknown party' };
         }

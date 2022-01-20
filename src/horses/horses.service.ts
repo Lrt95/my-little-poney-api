@@ -14,7 +14,6 @@ export class HorsesService {
   async findAll(): Promise<Horse[]> {
     return await this.model
       .find()
-      .populate('owner dpUsers')
       .exec()
       .catch((error) => error);
   }
@@ -25,7 +24,7 @@ export class HorsesService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('owner dpUsers');
+          return result;
         } else {
           throw { error: 'unknown horse' };
         }
@@ -39,7 +38,7 @@ export class HorsesService {
       createdAt: new Date(),
     })
       .save()
-      .then((result) => result.populate('owner dpUsers'))
+      .then((result) => result)
       .catch((error) => error);
   }
 
@@ -49,7 +48,7 @@ export class HorsesService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('owner dpUsers');
+          return result;
         } else {
           throw { error: 'unknowns horse' };
         }
@@ -63,7 +62,7 @@ export class HorsesService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('owner dpUsers');
+          return result;
         } else {
           throw { error: 'unknown horse' };
         }

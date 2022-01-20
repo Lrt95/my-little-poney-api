@@ -15,7 +15,6 @@ export class UsersService {
   async findAll(): Promise<User[]> {
     return await this.model
       .find()
-      .populate('horses')
       .exec()
       .catch((error) => error);
   }
@@ -26,7 +25,7 @@ export class UsersService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('horses');
+          return result;
         } else {
           throw { error: 'unknown user' };
         }
@@ -40,7 +39,7 @@ export class UsersService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('horses');
+          return result;
         } else {
           throw { error: 'unknown user' };
         }
@@ -51,11 +50,10 @@ export class UsersService {
   async findOneByPasswordAndMail(userDto: UserDto): Promise<User> {
     return await this.model
       .findOne({ password: userDto.password, email: userDto.email })
-      .populate('horses')
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('horses');
+          return result;
         } else {
           throw { error: 'error login' };
         }
@@ -69,7 +67,7 @@ export class UsersService {
       createdAt: new Date(),
     })
       .save()
-      .then((result) => result.populate('horses'))
+      .then((result) => result)
       .catch((error) => error);
   }
 
@@ -79,7 +77,7 @@ export class UsersService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('horses');
+          return result;
         } else {
           throw { error: 'user unknowns' };
         }
@@ -93,7 +91,7 @@ export class UsersService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('horses');
+          return result;
         } else {
           throw { error: 'unknown user' };
         }

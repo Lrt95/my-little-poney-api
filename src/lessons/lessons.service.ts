@@ -14,7 +14,6 @@ export class LessonsService {
   async findAll(): Promise<Lesson[]> {
     return await this.model
       .find()
-      .populate('user attendees')
       .exec()
       .catch((error) => error);
   }
@@ -25,7 +24,7 @@ export class LessonsService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('user attendees');
+          return result;
         } else {
           throw { error: 'unknown lesson' };
         }
@@ -39,7 +38,7 @@ export class LessonsService {
       createdAt: new Date(),
     })
       .save()
-      .then((result) => result.populate('user attendees'))
+      .then((result) => result)
       .catch((error) => error);
   }
 
@@ -49,7 +48,7 @@ export class LessonsService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('user attendees');
+          return result;
         } else {
           throw { error: 'unknown lesson' };
         }
@@ -63,7 +62,7 @@ export class LessonsService {
       .exec()
       .then((result) => {
         if (result) {
-          return result.populate('user attendees');
+          return result;
         } else {
           throw { error: 'unknown lesson' };
         }
