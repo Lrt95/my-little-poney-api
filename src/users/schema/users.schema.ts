@@ -20,25 +20,25 @@ export class User {
   profilePicture?: string;
 
   @Prop({ default: 0 })
-  age?: number;
+  age: number;
 
   @Prop({ default: '' })
-  FFELink?: string;
+  FFELink: string;
 
   @Prop({ default: '' })
-  phoneNumber?: string;
+  phoneNumber: string;
 
   @Prop({ default: '' })
-  role?: string;
+  role: string;
 
   @Prop({ default: '' })
-  type?: string;
+  type: string;
 
   @Prop({
     type: [{ type: mongoose.Types.ObjectId, ref: 'Horse' }],
     default: [],
   })
-  horses?: string[];
+  horses: string[];
 
   @Prop({ required: true })
   createdAt: Date;
