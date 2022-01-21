@@ -10,5 +10,6 @@ import { Contest, ContestSchema } from './schema/contests.schema';
   imports: [
     MongooseModule.forFeature([{ name: Contest.name, schema: ContestSchema }]),
   ],
+  exports: [ContestsService],
 })
 export class ContestsModule {}

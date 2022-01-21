@@ -61,6 +61,20 @@ export class ContestsService {
       });
   }
 
+  async updateMany(filter: any, query: any): Promise<Contest> {
+    return await this.model
+      .updateMany(filter, query, { new: true })
+      .exec()
+      .then((result) => {
+        if (result) {
+          return result;
+        } else {
+          throw { error: 'unknown contest' };
+        }
+      })
+      .catch((error) => error);
+  }
+
   async delete(id: string): Promise<Contest> {
     return await this.model
       .findByIdAndDelete(id)

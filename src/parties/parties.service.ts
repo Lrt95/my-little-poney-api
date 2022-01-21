@@ -58,6 +58,20 @@ export class PartiesService {
       });
   }
 
+  async updateMany(filter: any, query: any): Promise<Party> {
+    return await this.model
+      .updateMany(filter, query, { new: true })
+      .exec()
+      .then((result) => {
+        if (result) {
+          return result;
+        } else {
+          throw { error: 'unknown user' };
+        }
+      })
+      .catch((error) => error);
+  }
+
   async delete(id: string): Promise<Party> {
     return await this.model
       .findByIdAndDelete(id)

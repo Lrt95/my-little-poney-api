@@ -56,6 +56,20 @@ export class LessonsService {
       .catch((error) => error);
   }
 
+  async updateMany(filter: any, query: any): Promise<Lesson> {
+    return await this.model
+      .updateMany(filter, query, { new: true })
+      .exec()
+      .then((result) => {
+        if (result) {
+          return result;
+        } else {
+          throw { error: 'unknown lesson' };
+        }
+      })
+      .catch((error) => error);
+  }
+
   async delete(id: string): Promise<Lesson> {
     return await this.model
       .findByIdAndDelete(id)

@@ -17,7 +17,7 @@ export class User {
   email: string;
 
   @Prop({ default: '' })
-  profilePicture?: string;
+  profilePicture: string;
 
   @Prop({ default: 0 })
   age: number;

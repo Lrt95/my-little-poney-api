@@ -1,14 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { CreateHorseDto } from './dto/create-horse.dto';
 import { UpdateHorseDto } from './dto/update-horse.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Horse, HorseDocument } from './schema/horses.schema';
+import { UsersService } from '../users/users.service';
+import { log } from 'util';
+import e from 'express';
 
 @Injectable()
 export class HorsesService {
   constructor(
     @InjectModel(Horse.name) private readonly model: Model<HorseDocument>,
+    @Inject(forwardRef(() => HorsesService))
+    private readonly usersService: UsersService,
   ) {}
 
   async findAll(): Promise<Horse[]> {
@@ -56,7 +61,40 @@ export class HorsesService {
       .catch((error) => error);
   }
 
+  async updateFilter(id: string, filter: any): Promise<Horse> {
+    return await this.model
+      .findByIdAndUpdate(id, filter, { new: true })
+      .exec()
+      .then((result) => {
+        if (result) {
+          return result;
+        } else {
+          throw { error: 'unknowns horse' };
+        }
+      })
+      .catch((error) => error);
+  }
+
+  async updateMany(filter: any, query: any): Promise<Horse> {
+    return await this.model
+      .updateMany(filter, query, { new: true })
+      .exec()
+      .then((result) => {
+        if (result) {
+          return result;
+        } else {
+          throw { error: 'unknowns horse' };
+        }
+      })
+      .catch((error) => error);
+  }
+
   async delete(id: string): Promise<Horse> {
+    await this.usersService.updateMany(
+      { horses: id },
+      { $pull: { horses: id } },
+    );
+
     return await this.model
       .findByIdAndDelete(id)
       .exec()

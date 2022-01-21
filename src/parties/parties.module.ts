@@ -10,5 +10,6 @@ import { Party, PartySchema } from './schema/parties.schema';
   imports: [
     MongooseModule.forFeature([{ name: Party.name, schema: PartySchema }]),
   ],
+  exports: [PartiesService],
 })
 export class PartiesModule {}
