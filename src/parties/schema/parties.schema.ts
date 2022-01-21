@@ -10,7 +10,7 @@ export class Party {
   @Prop({ required: true })
   name: string;
 
-  @Prop({ required: true })
+  @Prop()
   picturePath: string;
 
   @Prop({
