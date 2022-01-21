@@ -70,6 +70,20 @@ export class UsersService {
       .catch((error) => error);
   }
 
+  async findOneByIds(ids: string[]): Promise<User[]> {
+    return await this.model
+      .find({ _id: { $in: ids } })
+      .exec()
+      .then((result) => {
+        if (result) {
+          return result;
+        } else {
+          throw { error: 'unknown users' };
+        }
+      })
+      .catch((error) => error);
+  }
+
   async findOneByPasswordAndMail(userDto: UserDto): Promise<User> {
     return await this.model
       .findOne({ password: userDto.password, email: userDto.email })

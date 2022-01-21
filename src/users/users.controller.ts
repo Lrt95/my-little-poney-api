@@ -10,7 +10,7 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { UserDto, UserForgetDto } from './dto/user.dto';
+import { UserDto, UserForgetDto, UsersDto } from "./dto/user.dto";
 
 @Controller('users')
 export class UsersController {
@@ -29,6 +29,11 @@ export class UsersController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
+  }
+
+  @Post('/ids')
+  findByIds(@Body() usersDto: UsersDto) {
+    return this.usersService.findOneByIds(usersDto.ids);
   }
 
   @Post('/forget')
